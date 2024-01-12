@@ -1,0 +1,6 @@
+@TelaDeLogin_HostAddress = http://localhost:5273
+
+GET {{TelaDeLogin_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

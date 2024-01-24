@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TelaDeLogin.DTO;
 using TelaDeLogin.Models;
 using TelaDeLogin.Repositories;
@@ -10,7 +11,6 @@ namespace TelaDeLogin.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-
         [HttpPost]
         public IActionResult CadastrandoCliente([FromBody] Cliente cliente)
         {
@@ -19,17 +19,17 @@ namespace TelaDeLogin.Controllers
         }
 
         [HttpGet]
-        public IActionResult RetornandoClientes([FromBody] Cliente cliente)
+        public IActionResult RetornandoClientes()
         {
-            Repository.RetornaClientesBanco(cliente);
-            return Ok();
+            var clients = Repository.RetornaClientesBanco();
+            return Ok(clients);
         }
 
-        [HttpGet]
+        [HttpPost("login")]
         public IActionResult LoginCliente([FromBody] Login login)
         {
-            Repository.LoginClienteBanco(login);
-            return Ok();
+            var cliente = Repository.LoginClienteBanco(login).FirstOrDefault();
+            return Ok(cliente);
         }
     }
 }

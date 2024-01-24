@@ -5,8 +5,9 @@
         public static IConfiguration Configuration { get; set; }
 
         /// <summary>
-        /// String de conexão com o Postgre
+        /// String de conexão com o SQL
         /// </summary>
         public static string SQLConnectionString => Configuration.GetConnectionString("DefaultConnection");
+
     }
 }
